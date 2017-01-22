@@ -25,7 +25,7 @@
 					<div class='block'>
 						<label class="label">How Many Lines</label>
 						<p class="control">
-						  <input class="input" type="text" placeholder="Enter a number" v-model='numberOfNats' type='number'>
+						  <input class="input" type="text" placeholder="Enter a number" v-model.number='numberOfNats' type='number'>
 						</p>
 						<button type='submit' class='button is-primary' @click='getNats'>Start Exercise</button>
 					</div>
@@ -37,8 +37,8 @@
 						    
 						  </div>
 						  <div class="message-body">
-						    <div class='columns' v-for='n in numberOfNats'>
-						    	<p class='column' v-for='nats in finalNatsArray'>{{nats}}</p>
+						    <div class='columns' v-for='nats in finalNatsArray'>
+						    	<p class='column'>{{nats}}</p>
   						  </div>
 						  </div>
 						</article>

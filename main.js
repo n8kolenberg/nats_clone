@@ -1,17 +1,3 @@
-Vue.Component('my-natsExcercise', {
-	template: `
-
-
-
-
-	`
-
-
-
-});
-
-
-
 
 new Vue({
 	el: '#nats',
@@ -19,38 +5,44 @@ new Vue({
 	data: {
 		message: 'NATS AdOps test',
 		nats: '',
-		arrayOfNatsChars: [],
+		// arrayOfNatsChars: [],
+		// fiveNatsArray: [],
 		finalNatsArray: [],
-		numberOfNats: 1,
+		numberOfNats: 4,
 	},
 
 	methods: {
 
 		getNats() {
-			this.arrayOfNatsChars = [];
 			this.finalNatsArray = [];
+			for(var i=0; i < this.numberOfNats; i++) {
+				var arrayOfNatsChars = [];
+				var fiveNatsArray = [];
 
-			var text= "";
-			var possibleChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+				var text= "";
+				var possibleChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
-			for(var i=0; i<5; i++) {
-				text += possibleChars.charAt(Math.floor(Math.random() * possibleChars.length));
+				for(var j=0; j<5; j++) {
+					text += possibleChars.charAt(Math.floor(Math.random() * possibleChars.length));
+				}
+
+			
+				//Pushing main nats to fiveNatsArray twice as the correct options
+				fiveNatsArray.push(text, text);
+
+				//Splitting nats into array so we can shuffle them
+				arrayOfNatsChars = text.split('');
+
+				//Adding nats shuffled 3 times to fiveNatsArray as the incorrect options
+				fiveNatsArray.push(this.shuffleArray(arrayOfNatsChars).join(''),
+																 this.shuffleArray(arrayOfNatsChars).join(''),
+																 this.shuffleArray(arrayOfNatsChars).join(''));
+				var shuffledNatsArray = this.shuffleArray(fiveNatsArray).join('    |    ');
+
+				//Shuffle the fiveNatsArray
+				this.finalNatsArray.push(shuffledNatsArray);
 			}
-
-			//Assign Nats to nats data
-			this.nats = text;
-			//Pushing main nats to finalNatsArray twice as the correct options
-			this.finalNatsArray.push(this.nats, this.nats);
-
-			//Splitting nats into array so we can shuffle them
-			this.arrayOfNatsChars = this.nats.split('');
-
-			//Adding nats shuffled 3 times to finalNatsArray as the incorrect options
-			this.finalNatsArray.push(this.shuffleArray(this.arrayOfNatsChars).join(''),
-															 this.shuffleArray(this.arrayOfNatsChars).join(''),
-															 this.shuffleArray(this.arrayOfNatsChars).join(''));
-			//Shuffle the finalNatsArray
-			this.natsIt();
+			
 		},
 
 
@@ -73,13 +65,6 @@ new Vue({
 			}
 
 			return array;
-
-		},
-	
-
-		natsIt() {
-			//Shuffles the finalNatsArray
-			this.finalNatsArray = this.shuffleArray(this.finalNatsArray);
 
 		},
 
