@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>NATS ADOPS Test</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.3.1/css/bulma.css">
+	<script type="text/javascript" src="https://unpkg.com/vue@2.1.10/dist/vue.js"></script>
+</head>
+<body>
+
+
+	<div id="nats">
+		<div class='hero is-primary is-bold is-medium'>
+			<div class="hero-body">
+				<div class="container">
+					<h1 class="title">{{message}}</h1>
+				</div>
+			</div>
+		</div>
+
+		<section class='container'>
+			<div class="columns">
+			<!--First Column-->
+				<div class="column is-three-quarters">This is where the test will go
+					<div class='block'>
+						<label class="label">How Many Lines</label>
+						<p class="control">
+						  <input class="input" type="text" placeholder="Enter a number" v-model='numberOfNats' type='number'>
+						</p>
+						<button type='submit' class='button is-primary' @click='getNats'>Start Exercise</button>
+					</div>
+
+					<div class="block">
+						<article class="message is-primary">
+  						<div class="message-header">
+						    <p>NATS</p>
+						    
+						  </div>
+						  <div class="message-body">
+						    <div class='columns' v-for='n in numberOfNats'>
+						    	<p class='column' v-for='nats in finalNatsArray'>{{nats}}</p>
+  						  </div>
+						  </div>
+						</article>
+					</div>
+				</div>
+
+
+			<!--Second Column-->
+				<div class="column is-one-quarter">This is where the answers will go</div>
+
+			<!--End Columns-->
+			</div>
+		</section>
+
+
+		
+
+
+
+	</div>
+
+<script src='main.js'></script>
+</body>
+</html>
