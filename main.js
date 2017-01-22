@@ -5,41 +5,66 @@ new Vue({
 	data: {
 		message: 'NATS AdOps test',
 		nats: '',
-		// arrayOfNatsChars: [],
-		// fiveNatsArray: [],
 		finalNatsArray: [],
 		numberOfNats: 4,
+		numberOfChars: 5,
+		numberOfIterations: 5,
+	},
+
+	computed: {
+
 	},
 
 	methods: {
 
+		checkInputNumbs() {
+			if(this.numberOfChars > 15 && this.numberOfIterations > 12) {
+				 this.numberOfChars = 5;
+				 this.numberOfIterations = 5;
+				 return false;
+			} else if (this.numberOfChars < 15 && this.numberOfIterations > 12) {
+				 this.numberOfChars = 4;
+				 this.numberOfIterations = 12;
+				 return false;
+
+			} else if (this.numberOfChars > 15 && this.numberOfIterations < 12) {
+				 this.numberOfChars = 15;
+				 this.numberOfIterations = 4;
+				 return false;
+			}
+		},
+
 		getNats() {
+			this.checkInputNumbs();
 			this.finalNatsArray = [];
+
 			for(var i=0; i < this.numberOfNats; i++) {
 				var arrayOfNatsChars = [];
-				var fiveNatsArray = [];
+				var tempNatsArray = [];
 
 				var text= "";
 				var possibleChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
-				for(var j=0; j<5; j++) {
+				for(var j=0; j<this.numberOfChars; j++) {
 					text += possibleChars.charAt(Math.floor(Math.random() * possibleChars.length));
 				}
 
 			
-				//Pushing main nats to fiveNatsArray twice as the correct options
-				fiveNatsArray.push(text, text);
+				//Pushing main nats to tempNatsArray twice as the correct options
+				tempNatsArray.push(text, text);
 
 				//Splitting nats into array so we can shuffle them
 				arrayOfNatsChars = text.split('');
 
-				//Adding nats shuffled 3 times to fiveNatsArray as the incorrect options
-				fiveNatsArray.push(this.shuffleArray(arrayOfNatsChars).join(''),
-																 this.shuffleArray(arrayOfNatsChars).join(''),
-																 this.shuffleArray(arrayOfNatsChars).join(''));
-				var shuffledNatsArray = this.shuffleArray(fiveNatsArray);
+				//Depending on how many incorrect shuffles, we deduct 2 correct ones and push
+				//the rest to the tempNatsArray
+				for (var k=1; k<=this.numberOfIterations-2; k++) {
+					tempNatsArray.push(this.shuffleArray(arrayOfNatsChars).join(''));
+				}
+																 
+				var shuffledNatsArray = this.shuffleArray(tempNatsArray);
 
-				//Shuffle the fiveNatsArray
+				//Shuffle the tempNatsArray and push to finalNatsArray
 				this.finalNatsArray.push(shuffledNatsArray);
 			}
 			
@@ -73,18 +98,3 @@ new Vue({
 
 });
 
-/*
-
-We have the NATS and duplicate it and push it to an array
-
-We return 3 shuffled NATS and push them to the same array
-
-Now we have to repeat it 5 times
-
-We have to make sure that only 2 remain the same 
-
-We have to make sure that the locations of those 2 are random
-
-We have to make sure that the other 3 times are randomized versions of the same NATS
-
-*/

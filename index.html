@@ -18,27 +18,43 @@
 			</div>
 		</div>
 
+<br>
 		<section class='container'>
 			<div class="columns">
 			<!--First Column-->
 				<div class="column is-three-quarters">
-					<div class='block'>
-						<label class="label">How Many Lines</label>
-						<p class="control">
-						  <input class="input" type="text" placeholder="Enter a number" v-model.number='numberOfNats' type='number'>
-						</p>
-						<button type='submit' class='button is-primary' @click='getNats'>Start Exercise</button>
-					</div>
+
+					<form method='get' @submit.prevent="getNats">
+						<div class='block'>
+							<label class="label">How Many Lines</label>
+							<p class="control">
+							  <input class="input" type="text" placeholder="Enter a number" v-model.number='numberOfNats' type='number'>
+							</p>
+
+							<label class="label">How Many Characters</label>
+							<p class="control">
+							  <input class="input" type="text" placeholder="Enter a number" v-model.number='numberOfChars' type='number'>
+							</p>
+
+							<label class="label">How Many Iterations</label>
+							<p class="control">
+							  <input class="input" type="text" placeholder="Enter a number" v-model.number='numberOfIterations' type='number'>
+							</p>
+
+							<input type='submit' class='button is-primary' value="Start Exercise">
+						</div>
+					</form>
+					<br>
 
 					<div class="block">
 						<article class="message is-primary">
   						<div class="message-header">
-						    <p>NATS</p>
+						    <p>NATS Values</p>
 						  </div>
 						  <div class="message-body">
   						    <div class='columns' v-for='nats in finalNatsArray'>
-  						    	<p class='column' v-for='n in nats'>{{n}}</p></div>
-    						  </div>
+  						    	<p class='column' v-for='n in nats'><span>{{n}}</span> </p>
+  						    </div>
   						 </div>
 						</article>
 					</div>
@@ -46,7 +62,24 @@
 
 
 			<!--Second Column-->
-				<div class="column is-one-quarter">This is where the answers will go</div>
+				<div class="column is-one-quarter" style="padding-top: 275px;">
+					<div class="block">
+						<article class="message is-primary">
+  						<div class="message-header">
+						    <p>Answer</p>
+						  </div>
+						  <div class="message-body">
+  						    <div class='columns' v-for='nats in finalNatsArray'>
+  						    	<p class='column' v-for='n in nats'>A</p>
+  						    </div>
+  						 </div>
+						</article>
+					</div>
+
+
+
+
+				</div>
 
 			<!--End Columns-->
 			</div>
