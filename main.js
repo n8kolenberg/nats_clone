@@ -37,7 +37,7 @@ new Vue({
 				fiveNatsArray.push(this.shuffleArray(arrayOfNatsChars).join(''),
 																 this.shuffleArray(arrayOfNatsChars).join(''),
 																 this.shuffleArray(arrayOfNatsChars).join(''));
-				var shuffledNatsArray = this.shuffleArray(fiveNatsArray).join('    |    ');
+				var shuffledNatsArray = this.shuffleArray(fiveNatsArray);
 
 				//Shuffle the fiveNatsArray
 				this.finalNatsArray.push(shuffledNatsArray);

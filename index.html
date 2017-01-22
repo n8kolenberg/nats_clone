@@ -21,7 +21,7 @@
 		<section class='container'>
 			<div class="columns">
 			<!--First Column-->
-				<div class="column is-three-quarters">This is where the test will go
+				<div class="column is-three-quarters">
 					<div class='block'>
 						<label class="label">How Many Lines</label>
 						<p class="control">
@@ -34,13 +34,12 @@
 						<article class="message is-primary">
   						<div class="message-header">
 						    <p>NATS</p>
-						    
 						  </div>
 						  <div class="message-body">
-						    <div class='columns' v-for='nats in finalNatsArray'>
-						    	<p class='column'>{{nats}}</p>
-  						  </div>
-						  </div>
+  						    <div class='columns' v-for='nats in finalNatsArray'>
+  						    	<p class='column' v-for='n in nats'>{{n}}</p></div>
+    						  </div>
+  						 </div>
 						</article>
 					</div>
 				</div>
