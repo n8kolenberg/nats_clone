@@ -22,6 +22,7 @@
  		color: white;
  		border-radius: 3px;
  	}
+
 </style>
 
 	<div id="nats">
@@ -50,7 +51,7 @@
 							  <input class="input" type="text" placeholder="Enter a number" v-model.number='numberOfChars' type='number'>
 							</p>
 
-							<label class="label">How Many Columns</label>
+							<label class="label">How Many Iterations</label>
 							<p class="control">
 							  <input class="input" type="text" placeholder="Enter a number" v-model.number='numberOfIterations' type='number'>
 							</p>
@@ -60,6 +61,7 @@
 						</div>
 					</form>
 					<br>
+
 					<!--Exercise values-->
 					<p class="notification is-primary">
       			NATS EXERCISE
@@ -68,11 +70,9 @@
 					<div class="block">
 						<table class="table is-bordered is-striped removeZero">
 						  <thead>
-						    <tr>
-						    </tr>
 						   </thead>
 						   <tbody>
-						   <tr></tr>
+
 						    <tr v-for='(nats, index) in finalNatsArray'>
 						    	<th><p class='has-text-centered'>{{index}}</p></th>
 						      <th v-for='n in nats' ><p class='has-text-centered' >{{n.value}}</p></th>
@@ -100,7 +100,7 @@
 						    <tr v-for='(nats, index) in finalNatsArray'>
 						    	<th><p class='has-text-centered'>{{index + 1}}</p></th>
 						    	<td v-for='answer in finalNatsArray[0]'><p class='has-text-centered'>{{answer.value}}</p></td>
-						 
+						    
 						    </tr>
 						   </tbody>
 						</table>
@@ -116,11 +116,8 @@
 					<div class="block">
 						<table class="table is-bordered is-striped removeZero">
 						  <thead>
-						    <tr>
-						    </tr>
 						   </thead>
 						   <tbody>
-						   <tr></tr>
 						    <tr v-for='(nats, index) in finalNatsArray'>
 						    	<th><p class='has-text-centered'>{{index}}</p></th>
 						      <th v-for='n in nats' ><p class='has-text-centered' :class="{ 'is-success': n.success }" >{{n.value}}</p></th>
