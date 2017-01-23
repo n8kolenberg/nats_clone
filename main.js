@@ -3,16 +3,13 @@ new Vue({
 	el: '#nats',
 
 	data: {
-		message: 'NATS AdOps Exercise',
+		message: 'NATS AdOps test',
 		nats: '',
 		finalNatsArray: [],
+		finalAnswerArray: [],
 		numberOfLines: 4,
 		numberOfChars: 5,
 		numberOfIterations: 5,
-	},
-
-	computed: {
-
 	},
 
 	methods: {
@@ -37,46 +34,62 @@ new Vue({
 		getNats() {
 			this.checkInputNumbs();
 			this.finalNatsArray = [];
+			this.finalAnswerArray = [];
 
 			for(var i=0; i < this.numberOfLines; i++) {
 				var arrayOfNatsChars = [];
 				var tempNatsArray = [];
+				var tempCorrectAnswerArray = [];
 
 				var text= "";
-				var answers= "";
+				var answers= [];
 				var possibleChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
 				for(var j=0; j<this.numberOfChars; j++) {
 					text += possibleChars.charAt(Math.floor(Math.random() * possibleChars.length));
 				}
 
-			
-				//Pushing main nats to tempNatsArray twice as the correct options
-				tempNatsArray.push(text, text);
+				
 
-				//Splitting nats into array so we can shuffle them
+				//Pushing objects with value of NAT value as text variable and success = true to tempNatsArray
+				tempNatsArray.push(
+				{
+					'value': text,
+					'success': true
+				}, 
+				{
+					'value': text,
+					'success': true
+				});
+
+
+				//Splitting text variable including NATS value into array so we can shuffle them
 				arrayOfNatsChars = text.split('');
 
 				//Depending on how many incorrect shuffles, we deduct 2 correct ones and push
-				//the rest to the tempNatsArray
+				//the rest to the tempNatsArray in the form of objects with success = false
 				for (var k=0; k<this.numberOfIterations-2; k++) {
-					tempNatsArray.push(this.shuffleArray(arrayOfNatsChars).join(''));
+					tempNatsArray.push({
+						'value': this.shuffleArray(arrayOfNatsChars).join(''),
+						'success': false
+					});
 				}
 
-				//Adding the initial Answers to show options in Front End
-				for (var l=0; l<this.numberOfIterations; l++) {
-					answers += possibleChars.charAt(l);
-				}
-																 
+
+				//Shuffle the tempNatsArray and tempCorrectAnswerArray and push to finalNatsArray and finalAnswerArray														 
 				var shuffledNatsArray = this.shuffleArray(tempNatsArray);
-
-				//Shuffle the tempNatsArray and push to finalNatsArray
 				this.finalNatsArray.push(shuffledNatsArray);
-				
+
+
+				//Adding multiple choice letters to show options in front end
+				for (var l=0; l<this.numberOfIterations; l++) {
+					answers.push({'value': possibleChars.charAt(l), 'success': false});
+				}
+			
 			}
+			//Adding the multiple choice of ABCDE.. etc to have it in the first row of the table
 			this.finalNatsArray.unshift(answers);
 		},
-
 
 
 		shuffleArray(array) {
