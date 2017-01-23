@@ -6,7 +6,7 @@ new Vue({
 		message: 'NATS AdOps test',
 		nats: '',
 		finalNatsArray: [],
-		numberOfNats: 4,
+		numberOfLines: 4,
 		numberOfChars: 5,
 		numberOfIterations: 5,
 	},
@@ -38,11 +38,12 @@ new Vue({
 			this.checkInputNumbs();
 			this.finalNatsArray = [];
 
-			for(var i=0; i < this.numberOfNats; i++) {
+			for(var i=0; i < this.numberOfLines; i++) {
 				var arrayOfNatsChars = [];
 				var tempNatsArray = [];
 
 				var text= "";
+				var answers= "";
 				var possibleChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
 				for(var j=0; j<this.numberOfChars; j++) {
@@ -58,16 +59,22 @@ new Vue({
 
 				//Depending on how many incorrect shuffles, we deduct 2 correct ones and push
 				//the rest to the tempNatsArray
-				for (var k=1; k<=this.numberOfIterations-2; k++) {
+				for (var k=0; k<this.numberOfIterations-2; k++) {
 					tempNatsArray.push(this.shuffleArray(arrayOfNatsChars).join(''));
+				}
+
+				//Adding the initial Answers to show options in Front End
+				for (var l=0; l<this.numberOfIterations; l++) {
+					answers += possibleChars.charAt(l);
 				}
 																 
 				var shuffledNatsArray = this.shuffleArray(tempNatsArray);
 
 				//Shuffle the tempNatsArray and push to finalNatsArray
 				this.finalNatsArray.push(shuffledNatsArray);
+				
 			}
-			
+			this.finalNatsArray.unshift(answers);
 		},
 
 
