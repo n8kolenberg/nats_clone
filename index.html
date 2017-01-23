@@ -10,7 +10,7 @@
 
 
 	<div id="nats">
-		<div class='hero is-primary is-bold is-medium'>
+		<div class='hero is-primary is-bold'>
 			<div class="hero-body">
 				<div class="container">
 					<h1 class="title">{{message}}</h1>
@@ -28,7 +28,7 @@
 						<div class='block'>
 							<label class="label">How Many Lines</label>
 							<p class="control">
-							  <input class="input" type="text" placeholder="Enter a number" v-model.number='numberOfNats' type='number'>
+							  <input class="input" type="text" placeholder="Enter a number" v-model.number='numberOfLines' type='number'>
 							</p>
 
 							<label class="label">How Many Characters</label>
@@ -45,53 +45,53 @@
 						</div>
 					</form>
 					<br>
+					
+					<p class="notification is-primary">
+      			NATS EXERCISE
+    			</p>
 
 					<div class="block">
-						<article class="message is-primary">
-  						<div class="message-header">
-						    <p>NATS Values</p>
-						  </div>
-						  <div class="message-body">
-  						    <div class='columns' v-for='nats in finalNatsArray'>
-  						    	<p class='column' v-for='n in nats'><span>{{n}}</span> </p>
-  						    </div>
-  						 </div>
-						</article>
+						<table class="table is-bordered is-striped">
+						  <thead>
+						    <tr>
+						    </tr>
+						   </thead>
+						   <tbody>
+						    <tr v-for='nats in finalNatsArray'>
+						      <th v-for='n in nats'><p class='has-text-centered'>{{n}}</p></th>
+						    </tr>
+						   </tbody>
+						</table>
 					</div>
 				</div>
 
 
 			<!--Second Column-->
 				<div class="column is-one-quarter" style="padding-top: 275px;">
+					<p class="notification is-primary">
+      			CHOOSE THE MATCHING TWO
+    			</p>
 					<div class="block">
-						<article class="message is-primary">
-  						<div class="message-header">
-						    <p>Answer</p>
-						  </div>
-						  <div class="message-body">
-  						    <div class='columns' v-for='nats in finalNatsArray'>
-  						    	<p class='column' v-for='n in nats'>A</p>
-  						    </div>
-  						 </div>
-						</article>
+						<table class="table is-bordered is-striped">
+						  <thead>
+						    <tr>
+						    </tr>
+						   </thead>
+						   <tbody>
+						    <tr v-for='nats in finalNatsArray'>
+						      <td v-for='answer in finalNatsArray[0]'><p class='has-text-centered'>{{answer}}</p>
+						      </td>
+						    </tr>
+						   </tbody>
+						</table>
 					</div>
-
-
-
-
 				</div>
 
 			<!--End Columns-->
 			</div>
 		</section>
-
-
-		
-
-
-
 	</div>
 
-<script src='main.js'></script>
+<script src='js/main.js'></script>
 </body>
 </html>
