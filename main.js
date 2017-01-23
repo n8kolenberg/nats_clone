@@ -3,7 +3,7 @@ new Vue({
 	el: '#nats',
 
 	data: {
-		message: 'NATS AdOps test',
+		message: 'NATS AdOps Exercise',
 		nats: '',
 		finalNatsArray: [],
 		numberOfLines: 4,
