@@ -57,7 +57,8 @@
 						    </tr>
 						   </thead>
 						   <tbody>
-						    <tr v-for='nats in finalNatsArray'>
+						    <tr v-for='(nats, index) in finalNatsArray'>
+						      <th><p class='has-text-centered'>{{index}}</p></th>  
 						      <th v-for='n in nats'><p class='has-text-centered'>{{n}}</p></th>
 						    </tr>
 						   </tbody>
@@ -78,7 +79,8 @@
 						    </tr>
 						   </thead>
 						   <tbody>
-						    <tr v-for='nats in finalNatsArray'>
+						    <tr v-for='(nats, index) in finalNatsArray'>
+						      <th><p class='has-text-centered'>{{index}}</p></th>
 						      <td v-for='answer in finalNatsArray[0]'><p class='has-text-centered'>{{answer}}</p>
 						      </td>
 						    </tr>
